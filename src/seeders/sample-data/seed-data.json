@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "name": "Administrador General",
+      "email": "admin@riwimedicare.com",
+      "password": "Admin123!",
+      "role": "ADMIN"
+    },
+    {
+      "name": "Gestor de Solicitudes",
+      "email": "gestor@riwimedicare.com",
+      "password": "Gestor123!",
+      "role": "GESTOR"
+    }
+  ],
+  "clinics": [
+    {
+      "name": "Clínica del Norte",
+      "nit": "900123456-1",
+      "address": "Calle 45 #12-34, Barranquilla",
+      "responsibleName": "María Torres",
+      "responsiblePhone": "3001234567"
+    },
+    {
+      "name": "Clínica del Sur",
+      "nit": "900987654-2",
+      "address": "Carrera 20 #5-10, Barranquilla",
+      "responsibleName": "Carlos Ramírez",
+      "responsiblePhone": "3009876543"
+    }
+  ],
+  "warehouses": [
+    { "name": "Almacén Central", "location": "Zona Industrial, Barranquilla" },
+    { "name": "Almacén Norte", "location": "Vía 40, Barranquilla" }
+  ],
+  "medications": [
+    {
+      "name": "Acetaminofén 500mg",
+      "description": "Analgésico y antipirético",
+      "warehouseId": 1,
+      "stock": 500
+    },
+    {
+      "name": "Amoxicilina 500mg",
+      "description": "Antibiótico de amplio espectro",
+      "warehouseId": 1,
+      "stock": 200
+    },
+    {
+      "name": "Suero Fisiológico 500ml",
+      "description": "Solución salina para hidratación",
+      "warehouseId": 2,
+      "stock": 300
+    }
+  ]
+}

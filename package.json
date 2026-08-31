@@ -1,0 +1,25 @@
+{
+  "name": "performancetestnode",
+  "version": "1.0.0",
+  "description": "## Datos del coder",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinusergt/PerformanceTestNodeJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinusergt/PerformanceTestNodeJs/issues"
+  },
+  "homepage": "https://github.com/kevinusergt/PerformanceTestNodeJs#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "sequelize": "^6.37.8"
+  }
+}
