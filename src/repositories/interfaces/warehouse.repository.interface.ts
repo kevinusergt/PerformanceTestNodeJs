@@ -7,3 +7,4 @@ export interface IWarehouseRepository {
   update(id: number, data: Partial<WarehouseCreationAttributes>): Promise<Warehouse | null>;
   softDelete(id: number): Promise<boolean>;
 }
+ 

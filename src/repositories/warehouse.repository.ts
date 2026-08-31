@@ -24,4 +24,4 @@ export class WarehouseRepository implements IWarehouseRepository {
     const [affectedRows] = await Warehouse.update({ isDeleted: true }, { where: { id } });
     return affectedRows > 0;
   }
-}
+} 
