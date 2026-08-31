@@ -1,111 +1,140 @@
-# RiwiMediCare Plus - API de Solicitudes de Abastecimiento
+# RiwiMediCare Plus - Supply Request API
 
-## Datos del coder
+## Coder Information
 
-- **Nombre del Coder:** Kevin [Apellido]
-- **Clan:** [Nombre del clan]
+* **Coder Name:** Kevin Villalobos
+* **Clan:** Magdalena
 
-## Tecnologías utilizadas
+## Technologies Used
 
 Node.js 18+, Express, TypeScript, PostgreSQL, Sequelize ORM, JWT, Multer, Swagger, Jest.
 
-## Arquitectura
+## Architecture
 
-```
+```text
 Routes → Middlewares → Controllers → Services → Repositories → Sequelize → PostgreSQL
 ```
 
-## Instructivo de instalación
+## Installation
 
 ```bash
 npm install
 ```
 
-## Variables de entorno (ejemplo)
+## Environment Variables
 
-Copia `.env.example` a `.env` y ajusta según tu entorno:
+Copy `.env.example` to `.env` and change the values for your environment:
 
-```
+```text
 PORT=3000
 
 DB_NAME=riwimedicare_plus
+
 DB_USER=postgres
+
 DB_PASSWORD=postgres
+
 DB_HOST=localhost
+
 DB_PORT=5432
 
-JWT_SECRET=una_clave_secreta_bien_larga_y_dificil_de_adivinar
+JWT_SECRET=use_a_long_and_secure_secret_key
+
 JWT_EXPIRES_IN=1d
 ```
 
-## Ejecución del proyecto
+## Run the Project
 
 ```bash
 npm run dev
 ```
 
-Esto conecta a PostgreSQL y crea/ajusta las tablas automáticamente según los modelos.
+This connects to PostgreSQL and creates or updates the database tables based on the models.
 
-## Ejecución de los seeders (carga de datos JSON)
+## Seeders - JSON Data Upload
 
-A diferencia de un seeder tradicional por script, este proyecto carga los
-datos base mediante un **endpoint protegido** que recibe un archivo `.json`
-usando `multer`.
+This project loads the initial data using a **protected endpoint**. The endpoint receives a `.json` file using `multer`.
 
-1. Inicia sesión como ADMIN (`POST /api/auth/login`) y copia el token.
-2. Con Postman (o Swagger UI), haz una petición:
-   - `POST /api/seed/upload`
-   - Header: `Authorization: Bearer <token>`
-   - Body tipo `form-data`, campo `file` = archivo `.json` (tipo File)
-   - Usa como ejemplo el archivo `src/seeders/sample-data/seed-data.json`
-     incluido en este repo.
-3. El endpoint es idempotente (usa `findOrCreate`): puedes subirlo varias
-   veces sin duplicar información.
+1. Log in as an ADMIN using `POST /api/auth/login` and copy the token.
 
-## Documentación Swagger
+2. Using Postman or Swagger UI, make a request:
 
-Con el servidor corriendo:
+   * `POST /api/seed/upload`
+   * Header: `Authorization: Bearer <token>`
+   * Body: `form-data`
+   * Field: `file`
+   * File type: `.json`
 
+3. You can use this example file:
+
+```text
+src/seeders/sample-data/seed-data.json
 ```
+
+The endpoint is idempotent and uses `findOrCreate`. You can upload the same file more than once without creating duplicate data.
+
+## Swagger Documentation
+
+Start the server and open:
+
+```text
 http://localhost:3000/api-docs
 ```
 
-## Pruebas unitarias (Jest)
+## Unit Tests (Jest)
+
+Run:
 
 ```bash
 npm test -- --coverage
 ```
 
-Incluye 2 pruebas sobre las funcionalidades críticas:
-- Validación de NIT duplicado al crear una clínica.
-- Validación de inventario insuficiente / descuento de stock al crear una solicitud.
+The project includes 2 tests for important features:
 
-## Despliegue con Docker (opcional)
+* Duplicate NIT validation when creating a clinic.
+* Insufficient inventory validation and stock reduction when creating a supply request.
+
+## Docker Deployment (Optional)
 
 ```bash
 docker-compose up --build
 ```
 
-Esto levanta dos contenedores: la API (puerto 3000) y PostgreSQL (puerto 5432),
-con volumen de persistencia y red interna entre ambos.
+This starts two containers:
 
-## Flujo de prueba sugerido
+* API on port `3000`
+* PostgreSQL on port `5432`
 
-1. `POST /api/auth/register` → crea un usuario ADMIN.
-2. `POST /api/auth/login` → obtén el token.
-3. `POST /api/seed/upload` → carga clínicas, almacenes y medicamentos de ejemplo.
-4. `POST /api/requests` → crea una solicitud de abastecimiento (valida stock).
-5. `GET /api/requests/active` → consulta solicitudes activas.
-6. `GET /api/requests/clinic/1/history` → historial de una clínica.
-7. `PUT /api/requests/{id}/status` → cambia el estado (PENDIENTE, APROBADA, RECHAZADA, ENTREGADA).
+The project also uses a persistent volume and an internal network between the containers.
 
-## URL del repositorio
+## Suggested Test Flow
 
-[Pega aquí la URL de tu repositorio público en GitHub]
+1. `POST /api/auth/register` → Create an ADMIN user.
 
-## Estrategia de ramas (GitFlow)
+2. `POST /api/auth/login` → Get the JWT token.
 
-```
+3. `POST /api/seed/upload` → Upload example clinics, warehouses, and medications.
+
+4. `POST /api/requests` → Create a supply request and validate the inventory.
+
+5. `GET /api/requests/active` → Get active supply requests.
+
+6. `GET /api/requests/clinic/1/history` → Get the history of a clinic.
+
+7. `PUT /api/requests/{id}/status` → Change the request status:
+
+   * `PENDIENTE`
+   * `APROBADA`
+   * `RECHAZADA`
+   * `ENTREGADA`
+
+## Repository URL
+
+[Add your public GitHub repository URL here]
+
+## Branch Strategy (GitFlow)
+
+```text
 main
  │
 develop
@@ -118,4 +147,12 @@ develop
  └── feature/seed-endpoint
 ```
 
-Commits siguiendo Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`).
+Commits use Conventional Commits:
+
+```text
+feat:
+fix:
+docs:
+refactor:
+```
+
