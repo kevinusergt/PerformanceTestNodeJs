@@ -76,18 +76,72 @@ router.get("/:id", authMiddleware, medicationController.getById);
  * @swagger
  * /api/medications/{id}:
  *   put:
- *     summary: Actualizar un medicamento (solo ADMIN)
+ *     summary: Actualizar un medicamento
+ *     description: Actualiza los datos de un medicamento existente. Requiere autenticación y rol ADMIN.
  *     tags: [Medications]
- *     security: [{ bearerAuth: [] }]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: integer }
+ *         description: ID del medicamento que se desea actualizar
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         example: 1
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Nombre del medicamento
+ *                 example: Acetaminofén
+ *               description:
+ *                 type: string
+ *                 description: Descripción del medicamento
+ *                 example: Analgésico y antipirético
+ *               quantity:
+ *                 type: integer
+ *                 minimum: 0
+ *                 description: Cantidad disponible en inventario
+ *                 example: 100
+ *               warehouseId:
+ *                 type: integer
+ *                 minimum: 1
+ *                 description: ID del almacén donde se encuentra el medicamento
+ *                 example: 1
  *     responses:
- *       200: { description: Medicamento actualizado }
+ *       200:
+ *         description: Medicamento actualizado correctamente
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               message: Medicamento actualizado correctamente
+ *       400:
+ *         description: Datos de actualización inválidos
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: El usuario no tiene permisos de ADMIN
+ *       404:
+ *         description: Medicamento o almacén no encontrado
+ *       409:
+ *         description: El medicamento ya existe
+ *       500:
+ *         description: Error interno del servidor
  */
-router.put("/:id", authMiddleware, roleMiddleware(["ADMIN"]), medicationController.update);
+router.put(
+  "/:id",
+  authMiddleware,
+  roleMiddleware(["ADMIN"]),
+  medicationController.update
+);
 
 /**
  * @swagger

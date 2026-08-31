@@ -80,19 +80,74 @@ router.get("/:id", authMiddleware, clinicController.getById);
  * @swagger
  * /api/clinics/{id}:
  *   put:
- *     summary: Actualizar una clínica (solo ADMIN)
+ *     summary: Actualizar una clínica
+ *     description: Actualiza los datos de una clínica existente. Requiere autenticación y rol ADMIN.
  *     tags: [Clinics]
- *     security: [{ bearerAuth: [] }]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         schema: { type: integer }
+ *         description: ID de la clínica que se desea actualizar
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         example: 1
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Nombre de la clínica
+ *                 example: Clínica Central
+ *               nit:
+ *                 type: string
+ *                 description: NIT único de la clínica
+ *                 example: "900123456-7"
+ *               address:
+ *                 type: string
+ *                 description: Dirección de la clínica
+ *                 example: Calle 10 #20-30
+ *               responsibleName:
+ *                 type: string
+ *                 description: Nombre del responsable
+ *                 example: Juan Pérez
+ *               responsiblePhone:
+ *                 type: string
+ *                 description: Teléfono del responsable
+ *                 example: "3001234567"
  *     responses:
- *       200: { description: Clínica actualizada }
+ *       200:
+ *         description: Clínica actualizada correctamente
+ *         content:
+ *           application/json:
+ *             example:
+ *               success: true
+ *               message: Clínica actualizada correctamente
+ *       400:
+ *         description: Datos de actualización inválidos
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: El usuario no tiene permisos de ADMIN
+ *       404:
+ *         description: Clínica no encontrada
+ *       409:
+ *         description: El NIT ya está registrado
+ *       500:
+ *         description: Error interno del servidor
  */
-router.put("/:id", authMiddleware, roleMiddleware(["ADMIN"]), clinicController.update);
-
+router.put(
+  "/:id",
+  authMiddleware,
+  roleMiddleware(["ADMIN"]),
+  clinicController.update
+);
 /**
  * @swagger
  * /api/clinics/{id}:

@@ -80,8 +80,18 @@ router.get("/:id", authMiddleware, warehouseController.getById);
  *         name: id
  *         required: true
  *         schema: { type: integer }
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name: { type: string }
+ *               location: { type: string }
  *     responses:
  *       200: { description: Almacén actualizado }
+ *       404: { description: Almacén no encontrado }
  */
 router.put("/:id", authMiddleware, roleMiddleware(["ADMIN"]), warehouseController.update);
 
