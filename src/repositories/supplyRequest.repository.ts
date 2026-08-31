@@ -1,4 +1,4 @@
-import { SupplyRequest, SupplyRequestCreationAttributes } from "../models/SupplyRequest";
+import { SupplyRequest, SupplyRequestCreationAttributes} from "../models/SupplyRequest";
 import { Clinic } from "../models/Clinic";
 import { Medication } from "../models/Medication";
 import { Warehouse } from "../models/Warehouse";

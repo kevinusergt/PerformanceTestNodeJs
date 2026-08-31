@@ -65,3 +65,4 @@ SupplyRequest.init(
   },
   { sequelize, tableName: "supply_requests", timestamps: true }
 );
+ 
