@@ -14,14 +14,13 @@ const seedController = new SeedController(seedService);
  * @swagger
  * /api/seed/upload:
  *   post:
- *     summary: Cargar datos base subiendo un archivo JSON (solo ADMIN)
+ *     summary: Cargar datos base subiendo un archivo JSON
  *     description: >
  *       Recibe un archivo JSON en el campo "file" (multipart/form-data) con
  *       las llaves opcionales "users", "clinics", "warehouses" y "medications".
  *       Actúa como seeder: usa findOrCreate, así que se puede subir el mismo
  *       archivo varias veces sin duplicar información.
  *     tags: [Seed]
- *     security: [{ bearerAuth: [] }]
  *     requestBody:
  *       required: true
  *       content:
@@ -38,8 +37,6 @@ const seedController = new SeedController(seedService);
  */
 router.post(
   "/upload",
-  authMiddleware,
-  roleMiddleware(["ADMIN"]),
   upload.single("file"),
   seedController.uploadSeed
 );
