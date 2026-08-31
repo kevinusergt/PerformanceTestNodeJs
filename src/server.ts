@@ -1,21 +1,23 @@
 import dotenv from "dotenv";
-import { ensureDatabaseExists } from "./config/createDatabase";
-dotenv.config();
-
 import app from "./app";
 import { connectDB, sequelize } from "./config/database";
 
-const PORT = process.env.PORT || 3000;
+dotenv.config();
 
-const startServer = async () => {
-  await ensureDatabaseExists();
-  await connectDB();
-  await sequelize.sync({ alter: true });
+const PORT = Number(process.env.PORT) || 3000;
 
-  app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-    console.log(`Documentación Swagger en http://localhost:${PORT}/api-docs`);
-  });
+const startServer = async (): Promise<void> => {
+  try {
+    await connectDB();
+    await sequelize.authenticate();
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
+      console.log(`Swagger disponible en http://localhost:${PORT}/api-docs`)
+    })
+  } catch (error) {
+    console.error("Error al iniciar el servidor:", error);
+    process.exit(1);
+  }
 };
 
-startServer();
+void startServer();

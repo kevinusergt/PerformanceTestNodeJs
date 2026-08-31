@@ -15,7 +15,7 @@ export const sequelize = new Sequelize(
     }
 );
 
-export const ConnectDB = async (): Promise<void> =>{
+export const connectDB = async (): Promise<void> =>{
     try {
         await sequelize.authenticate();
         console.log("Conexión a PostgreSQL establecida correctamente");
