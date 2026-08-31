@@ -4,7 +4,7 @@ import { connectDB, sequelize } from "./config/database";
 
 dotenv.config();
 
-const PORT = Number(process.env.DB_PORT) || 5432;
+const PORT = Number(process.env.PORT) || 3000;
 
 const startServer = async (): Promise<void> => {
   try {
