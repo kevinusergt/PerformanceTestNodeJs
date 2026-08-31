@@ -7,3 +7,4 @@ export interface IMedicationRepository {
   update(id: number, data: Partial<MedicationCreationAttributes>): Promise<Medication | null>;
   softDelete(id: number): Promise<boolean>;
 }
+ 

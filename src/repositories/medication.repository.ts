@@ -13,7 +13,7 @@ export class MedicationRepository implements IMedicationRepository {
   async findById(id: number): Promise<Medication | null> {
     return Medication.findOne({ where: { id, isDeleted: false } });
   }
-
+ 
   async update(
     id: number,
     data: Partial<MedicationCreationAttributes>
