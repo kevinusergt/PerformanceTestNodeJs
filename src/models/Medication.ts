@@ -25,14 +25,14 @@ export class Medication
   extends Model<MedicationAttributes, MedicationCreationAttributes>
   implements MedicationAttributes
 {
-  public id!: number;
-  public name!: string;
-  public description!: string | null;
-  public warehouseId!: number;
-  public stock!: number;
-  public isDeleted!: boolean;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare id: number;
+  declare name: string;
+  declare description: string | null;
+  declare warehouseId: number;
+  declare stock: number;
+  declare isDeleted: boolean;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
 }
 
 Medication.init(

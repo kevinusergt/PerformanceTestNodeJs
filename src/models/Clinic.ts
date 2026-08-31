@@ -20,15 +20,15 @@ export class Clinic
   extends Model<ClinicAttributes, ClinicCreationAttributes>
   implements ClinicAttributes
 {
-  public id!: number;
-  public name!: string;
-  public nit!: string;
-  public address!: string;
-  public responsibleName!: string;
-  public responsiblePhone!: string;
-  public isDeleted!: boolean;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare id: number;
+  declare name: string;
+  declare nit: string;
+  declare address: string;
+  declare responsibleName: string;
+  declare responsiblePhone: string;
+  declare isDeleted: boolean;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
 }
 
 Clinic.init(

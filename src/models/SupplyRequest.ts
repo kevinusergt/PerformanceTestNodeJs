@@ -28,15 +28,15 @@ export class SupplyRequest
   extends Model<SupplyRequestAttributes, SupplyRequestCreationAttributes>
   implements SupplyRequestAttributes
 {
-  public id!: number;
-  public clinicId!: number;
-  public medicationId!: number;
-  public warehouseId!: number;
-  public quantityRequested!: number;
-  public status!: RequestStatus;
-  public isDeleted!: boolean;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare id: number;
+  declare clinicId: number;
+  declare medicationId: number;
+  declare warehouseId: number;
+  declare quantityRequested: number;
+  declare status: RequestStatus;
+  declare isDeleted: boolean;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
 }
 
 SupplyRequest.init(

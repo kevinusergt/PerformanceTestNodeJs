@@ -17,12 +17,12 @@ export class Warehouse
   extends Model<WarehouseAttributes, WarehouseCreationAttributes>
   implements WarehouseAttributes
 {
-  public id!: number;
-  public name!: string;
-  public location!: string;
-  public isDeleted!: boolean;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare id: number;
+  declare name: string;
+  declare location: string;
+  declare isDeleted: boolean;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
 }
 
 Warehouse.init(
