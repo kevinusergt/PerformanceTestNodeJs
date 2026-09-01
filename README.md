@@ -81,25 +81,6 @@ Start the server and open:
 http://localhost:3000/api-docs
 ```
 
-## Unit Tests (Jest)
-
-Run:
-
-```bash
-npm test -- --coverage
-```
-
-The project includes 2 tests for important features:
-
-* Duplicate NIT validation when creating a clinic.
-* Insufficient inventory validation and stock reduction when creating a supply request.
-
-## Docker Deployment (Optional)
-
-```bash
-docker-compose up --build
-```
-
 This starts two containers:
 
 * API on port `3000`
