@@ -7,7 +7,7 @@
 
 ## Technologies Used
 
-Node.js 18+, Express, TypeScript, PostgreSQL, Sequelize ORM, JWT, Multer, Swagger, Jest.
+Node.js 18+, Express, TypeScript, PostgreSQL, Sequelize ORM, JWT, Multer, Swagger.
 
 ## Architecture
 
